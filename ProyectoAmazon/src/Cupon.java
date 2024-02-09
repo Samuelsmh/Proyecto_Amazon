@@ -1,17 +1,21 @@
+import java.util.Random;
 
 public class Cupon {
 	
 	// Atributos
 	private int identificador;
 	private double saldo;
+	private static int identificadorAutoIncrement = 10000;
 	
+	private static Random random = new Random();
 	//Constructor
 	public Cupon(double saldo) {
-		// El valor minimo de 5 digitos es 10000
-		this.identificador = 10000;
-		// Se vaya incrementando solo cuando se crea un cupon
-		identificador++;
+		
+		
+		//Generamos un random de esta manera. Así el número del ID sera aleatorio, pero será de 5 digitos
+		this.identificador = random.nextInt(90000) + 10000;
 		this.saldo=saldo;
+		
 	}
 
 	public int getIdentificador() {
