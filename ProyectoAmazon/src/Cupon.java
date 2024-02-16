@@ -36,22 +36,22 @@ public class Cupon {
 	// Metodo para gastar saldo
 	 public void gastarSaldo(double cantidad) {
         if (cantidad > saldo) {
-            System.out.println("Error: No hay suficiente saldo en el cupón.");
-        } else {
+            throw new IllegalArgumentException("El saldo del cupon es menor a la cantidad a gastar");
+        } 
             saldo -= cantidad;
             System.out.println("Se han gastado " + cantidad + "€ del cupón.");
         }
-    }
+    
 
     // Método para fusionar dos cupones
     public static Cupon fusionarCupones(Cupon cupon1, Cupon cupon2) {
         double nuevoSaldo = cupon1.getSaldo() + cupon2.getSaldo();
         Cupon cuponNuevo = new Cupon(nuevoSaldo);
+       
         cupon1.setSaldo(0);
         cupon2.setSaldo(0);
         return cuponNuevo;
     }
 	
-	
-	
+    
 }
