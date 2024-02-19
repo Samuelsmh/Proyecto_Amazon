@@ -1,5 +1,5 @@
 import java.util.Scanner;
-
+import java.util.Scanner;
 public class Main {
 
 	public static void main(String[] args) {
@@ -7,8 +7,8 @@ public class Main {
 		boolean fin = true;
 		Scanner sc = new Scanner(System.in);
 		int opcion = 0;
-		
-		/*
+		Cupon[] cupones = new Cupon [10];
+		int numeroCupon= 0;
 		
 		
 		do {
@@ -16,16 +16,36 @@ public class Main {
 			
 			System.out.println("Seleccione una opción:");
 			System.out.println("1. Crear cupon");
-			System.out.println("2. Gastar cupon");
+			System.out.println("2. Ver información del cupón");
 			System.out.println("3. Salir");
 
 			System.out.println("--------------------");
 			opcion = sc.nextInt();
 			
 			switch(opcion) {
-			case 1 -> System.out.println("Cupon creado");
-			case 2 -> System.out.println("Cupon gastado");
-			case 3 -> {
+			case 1: 
+				System.out.println("¿De cuanto dinero quieres el cupón?");
+				double dinero = sc.nextDouble();
+				
+				for(int i = 0; i<cupones.length;i++) {
+					if (cupones[i]==null) {
+				cupones[i] = new Cupon (dinero);
+				System.out.println("Cupon creado");
+				break;
+					}
+				}
+				break;
+		       case 2:
+                   System.out.println("Seleccione el número de cupón que desea ver:");
+                   numeroCupon = sc.nextInt();
+                   if (numeroCupon >= 0 && numeroCupon < cupones.length && cupones[numeroCupon] != null) {
+                       System.out.println("Mostrando información del cupón " + numeroCupon + ":");
+                       Cupon.mostrarInformacion(cupones[numeroCupon]);
+                   } else {
+                       System.out.println("Número de cupón inválido o cupón no existente.");
+                   }
+                   break;
+			case 3 : {
 				System.out.println("Saliendo...");
 				fin = false;
 			}
@@ -34,8 +54,8 @@ public class Main {
 		}
 		while(fin);
 		
-		*/
-		
+	
+		/*
 		// TODO Auto-generated method stub
 		Cupon  c1 = new Cupon(50.0);
 		Cupon  c2 = new Cupon(50.0);
@@ -45,8 +65,8 @@ public class Main {
 		Cupon  c6 = new Cupon(50.0);
 		Cupon  c7 = new Cupon(50.0);
 
-
-		
+*/
+		/*
 		System.out.println(c1.getIdentificador());
 		
 		System.out.println(c2.getIdentificador());
