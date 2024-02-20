@@ -4,18 +4,21 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-		//HOLA SOY NUEVA
-		
+		//Futura condicion del do while		
 		boolean fin = true;
+		// Scanner para que el usuario meta datos por parametro
 		Scanner sc = new Scanner(System.in);
+		// Servira para que elija una opcion u otra
 		int opcion = 0;
+		//Creacion de un array de 10 cupones
 		Cupon[] cupones = new Cupon [10];
+		//Cuenta cupones creados
 		int numeroCupon= 0;
 		
 		
 		do {
 			
-			
+			//Para que el usuario marque una opcion
 			System.out.println("Seleccione una opción:");
 			System.out.println("1. Crear cupon");
 			System.out.println("2. Ver información del cupón");
@@ -26,20 +29,23 @@ public class Main {
 			
 			switch(opcion) {
 			case 1: 
+				//En caso de que marque 1 le pregunta la cantidad que se metera en el parametro del contructor del cupon
 				System.out.println("¿De cuanto dinero quieres el cupón?");
 				double dinero = sc.nextDouble();
-				
+				//Comprueba si hay espacio para crear un cupon
 				for(int i = 0; i<cupones.length;i++) {
+					//Si hay hueco , se crea
 					if (cupones[i]==null) {
+						//Se le añade el dinero que ha puesto el usuario
 				cupones[i] = new Cupon (dinero);
 				System.out.println("Cupon creado");
 				break;
 					}
 				}
 				break;
-		       case 2:
+		       case 2://Muestra informacion del cupon
                    System.out.println("Seleccione el número de cupón que desea ver:");
-                   numeroCupon = sc.nextInt();
+                   numeroCupon = sc.nextInt();// Coge el valor del cupon que marque comprobando que no sea nulo y este en el array
                    if (numeroCupon >= 0 && numeroCupon < cupones.length && cupones[numeroCupon] != null) {
                        System.out.println("Mostrando información del cupón " + numeroCupon + ":");
                        Cupon.mostrarInformacion(cupones[numeroCupon]);
@@ -47,6 +53,7 @@ public class Main {
                        System.out.println("Número de cupón inválido o cupón no existente.");
                    }
                    break;
+                   //Sale
 			case 3 : {
 				System.out.println("Saliendo...");
 				fin = false;

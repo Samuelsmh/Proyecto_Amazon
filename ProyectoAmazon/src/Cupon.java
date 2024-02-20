@@ -3,22 +3,22 @@ import java.util.Random;
 public class Cupon {
 	
 	// Atributos
-	private int identificador;
-	private double saldo;
-	private static int identificadorAutoIncrement = 10000;
-	private int movimientoCuponAñadir;
-	private int movimientoCuponGastar;
-	private double saldoInicial;
-	private double saldoAlAñadir;
+	private int identificador; // Identificador del cupon
+	private double saldo; // Saldo del cupon
+	private static int identificadorAutoIncrement = 10000; // autoincrement que sera el id 
+	private int movimientoCuponAñadir; // hace como contador
+	private int movimientoCuponGastar; // Hace como contador
+	private double saldoInicial; //Saldo inicial que se coge el valor del saldo cuando crea el cupon
+	private double saldoAlAñadir; //Saldo al añadir que se coge el valor del saldo cuando añade saldo al cupon
 	
 	//private static Random random = new Random();
-	//Constructor
+	//Constructor //Solo recibe el saldo
 	public Cupon(double saldo) {
 		
 		
-		this.identificador = identificadorAutoIncrement++;
-		this.saldo=saldo;
-		this.saldoInicial = saldo;
+		this.identificador = identificadorAutoIncrement++; // Se le asigna un id que sera auto increment
+		this.saldo=saldo; // Se mete el saldo metido por parametro
+		this.saldoInicial = saldo; // Se iguala el saldo inicial al saldo añadido por parametros
 		
 	}
 
@@ -41,7 +41,7 @@ public class Cupon {
 	public double getSaldoAlAñadir() {
 		return this.saldoAlAñadir;
 	}
-
+	// Set en el que comprobamos que el saldo no puede ser negativo, en ese caso, error
 	public void setSaldo(double saldo) {
 		if(saldo<0) {
 			 throw new IllegalArgumentException("Error: No puedes obtener un cupón de dinero negativo.");
@@ -64,7 +64,7 @@ public class Cupon {
 	}
 
 	
-
+	// Funcion, no puede ser saldo negativo , se mete en saldo , se añade uno al contador para seguir cuantos movimientos hace en añadir y se va acumulando el saldo en saldo al añadir
 	public void añadirSaldo(double saldo) {
 		if(saldo<0) {
 			 throw new IllegalArgumentException("Error: No puedes obtener un cupón de dinero negativo.");
@@ -76,7 +76,7 @@ public class Cupon {
 		}
 	
 
-	//Metodos
+	//Comprueba que hay dinero suficiente, si hay lo retira y suma uno al contador a movimientoCuponGastar
 	 public void gastarSaldo1(double cantidad) {
 	        if (cantidad > saldo) {
 	            throw new IllegalArgumentException("Error: No hay suficiente saldo en el cupón.");
@@ -87,7 +87,7 @@ public class Cupon {
 	        }
 	    
 
-	    // Método para fusionar dos cupones
+	    // Método para fusionar dos cupones, coge dos cupones y suma su saldo en un cupon nuevo y posteriormente devolvemos el cupon nuevo con el saldo de los dos antiguos
 	    public static Cupon fusionarCupones(Cupon cupon1, Cupon cupon2) {
 	        double nuevoSaldo = cupon1.getSaldo() + cupon2.getSaldo();
 	        Cupon cuponNuevo = new Cupon(nuevoSaldo);
