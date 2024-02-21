@@ -16,7 +16,6 @@ public class Cupon {
 	private int movimientoCuponGastar;
 	private double saldoInicial;
 	private double saldoAlAniadir;
-	private double saldoAlGastar;
 	private int identificadorRandom = rand.nextInt(90000) + 10000;
 	
 	// private static Random random = new Random();
