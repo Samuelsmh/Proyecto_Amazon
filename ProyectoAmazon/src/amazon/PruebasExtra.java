@@ -16,30 +16,76 @@ public class PruebasExtra {
 
 		do {
 
-			System.out.println("Seleccione una opción:");
+			System.out.println("\nSeleccione una opción: \n");
 			System.out.println("1. Crear cupon");
-			System.out.println("2. Ver información del cupón");
-			System.out.println("3. Fusionar cupones");
-			System.out.println("4. Salir");
-
+			System.out.println("2. Gastar saldo");
+	        System.out.println("3. Añadir saldo");
+			System.out.println("4. Fusionar cupones");
+			System.out.println("5. Ver información del cupón");
+			System.out.println("6. Salir");
 			System.out.println("--------------------");
+			
+			System.out.println("Seleccione una opción:");
 			opcion = sc.nextInt();
 
 			switch (opcion) {
 			case 1:
-				System.out.println("¿De cuanto dinero quieres el cupón?");
+				System.out.println("\n¿De cuanto dinero quieres el cupón?");
 				double dinero = sc.nextDouble();
 
 				for (int i = 0; i < cupones.length; i++) {
 					if (cupones[i] == null) {
 						cupones[i] = new Cupon(dinero);
-						System.out.println("Cupon creado");
+						System.out.println("\nCupon creado. Su número de cupón es: " + i);
+						System.out.println("El saldo del cupón es de " + dinero + "€");
 						break;
 					}
 				}
 				break;
+				
 			case 2:
-				System.out.println("Seleccione el número de cupón que desea ver:");
+				 if (cupones != null) {
+                     System.out.print("\nIntroduce la cantidad a gastar: ");
+                     double cantidadGastar = sc.nextDouble();
+                     cupones[numeroCupon].gastarSaldo(cantidadGastar);
+                 } else {
+                     System.out.println("\nPrimero debes crear un cupón.");
+                 }
+
+				break;
+				
+			case 3:
+				if (cupones != null) {
+                    System.out.print("\nIntroduce la cantidad a añadir: ");
+                    double cantidadAniadir = sc.nextDouble();
+                    cupones[numeroCupon].aniadirSaldo(cantidadAniadir);
+                } else {
+                    System.out.println("\nPrimero debes crear un cupón.");
+                }
+
+				break;
+
+			case 4:
+				System.out.println("\nIntroduce el número del primer cupón que quieres fusionar:");
+				int numero1 = sc.nextInt();
+				if(cupones[numero1] == null) {
+					throw new IllegalArgumentException("\nEste cupón no existe");
+				}
+
+				System.out.println("\nIntroduce el número del segundo cupón que quieres fusionar:");
+				int numero2 = sc.nextInt();
+				if(cupones[numero2] == null) {
+					throw new IllegalArgumentException("\nEste cupón no existe");
+				}
+							
+				Cupon cuponFusionado = Cupon.fusionarCupones(cupones[numero1], cupones[numero2]);
+				System.out.println("\nCupones fusionados");
+				System.out.println("\nMostrando información del cupón fusionado");
+				Cupon.mostrarInformacion(cuponFusionado);
+				break;
+				
+			case 5:
+				System.out.println("\nSeleccione el número deL cupón que desea ver:");
 				numeroCupon = sc.nextInt();
 				if (numeroCupon >= 0 && numeroCupon < cupones.length && cupones[numeroCupon] != null) {
 					System.out.println("Mostrando información del cupón " + numeroCupon + ":");
@@ -48,27 +94,9 @@ public class PruebasExtra {
 					System.out.println("Número de cupón inválido o cupón no existente.");
 				}
 				break;
-
-			case 3:
-				System.out.println("¿Qué cupones quieres fusionar?");
 				
-				int numero1 = sc.nextInt();
-				int numero2 = sc.nextInt();
-				if(cupones[numero1] == null) {
-					throw new IllegalArgumentException("Este cupón no existe");
-				}
-				if(cupones[numero2] == null) {
-					throw new IllegalArgumentException("Este cupón no existe");
-				}
-					
-				
-				Cupon cuponFusionado = Cupon.fusionarCupones(cupones[numero1], cupones[numero2]);
-				System.out.println("Cupones fusionados");
-				System.out.println("Mostrando información del cupón fusionado");
-				Cupon.mostrarInformacion(cuponFusionado);
-				break;
-			case 4: {
-				System.out.println("Saliendo...");
+			case 6: {
+				System.out.println("\nSaliendo...");
 				fin = false;
 			}
 			}

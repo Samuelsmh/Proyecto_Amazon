@@ -16,6 +16,7 @@ public class Cupon {
 	private int movimientoCuponGastar;
 	private double saldoInicial;
 	private double saldoAlAniadir;
+	private double saldoAlGastar;
 	private int identificadorRandom = rand.nextInt(90000) + 10000;
 	
 	// private static Random random = new Random();
@@ -79,8 +80,11 @@ public class Cupon {
 
 		}
 		this.saldo += saldo;
-		movimientoCuponAniadir++;
 		this.saldoAlAniadir = this.saldo;
+		movimientoCuponAniadir++;
+		System.out.println("\nSe han añadido " + saldo + "€ al cupón.");
+		System.out.println("Nuevo saldo: " + this.saldo + "€");
+		
 	}
 
 	// Metodos
@@ -89,8 +93,10 @@ public class Cupon {
 			throw new IllegalArgumentException("Error: No hay suficiente saldo en el cupón.");
 		}
 		saldo -= cantidad;
-		System.out.println("Se han gastado " + cantidad + "€ del cupón.");
 		movimientoCuponGastar++;
+		System.out.println("\nSe han gastado " + cantidad + "€ del cupón.");
+		System.out.println("Nuevo saldo: " + this.saldo + "€");
+
 	}
 
 	// Método para fusionar dos cupones
@@ -109,23 +115,21 @@ public class Cupon {
 
 	
 	public static void mostrarInformacion(Cupon cupon) {
-		System.out.println("Esta es la información de tu cupón");
+		System.out.println("\nEsta es la información de tu cupón");
 		System.out.println("-----------------------------------");
-		System.out.printf("Saldo inicial: %.2f \n", cupon.getSaldoInicial());
+		System.out.printf("Saldo inicial: %.2f€\n", cupon.getSaldoInicial());
 		System.out.printf("Identificador: %d \n", cupon.getIdentificador());
 		System.out.println("-----------------------------------");
 		System.out.println("Estos son tus movimientos");
 		System.out.println("-----------------------------------");
 		if (cupon.getMovimientoCuponAniadir() != 0) {
 			System.out.printf("Has añadido dinero %d veces. \n", cupon.getMovimientoCuponAniadir());
-			System.out.printf("Dinero resultante %.2f \n", cupon.getSaldoAlAniadir());
 		} else {
 			System.out.printf("No has añadido dinero. \n", cupon.getMovimientoCuponAniadir());
 		}
 
 		if (cupon.getMovimientoCuponGastar() != 0) {
 			System.out.printf("Has gastado dinero %d veces. \n", cupon.getMovimientoCuponGastar());
-			System.out.printf("Dinero resultante %.2f \n", cupon.getSaldo());
 		} else {
 			System.out.printf("No has gastado dinero \n", cupon.getMovimientoCuponGastar());
 		}
